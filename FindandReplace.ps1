@@ -274,6 +274,15 @@ $findAndReplaceList = New-Object System.Data.DataTable "New CSV"
 Out-Null -inputObject $findAndReplaceList.columns.add("Find")
 Out-Null -inputObject $findAndReplaceList.columns.add("Replace")
 
+$operationsCompleted = 0
+$currentFind = ""
+$currentReplace = ""
+$MatchEvaluator = [System.Text.RegularExpressions.MatchEvaluator] {  
+    param($found)
+    $global:operationsCompleted++
+    Write-Output ([regex]::Replace($found, [regex] $currentFind, $currentReplace))
+}
+
 #handles what happens when the mouse enters a list box object
 #changes the mouse icon and affects the drop operation
 function onDragOver ($sender, $event, $allowFiles, $allowFolders)
@@ -450,6 +459,11 @@ function findAndReplace()
         {
             Write-Host $file
             $fileContent = (Get-Content $file -ReadCount 0) -join "`r`n"
+            if($checkboxBackupFiles.checked -eq $True)
+            {
+                New-Item -Path "$($file).bak" -ItemType "file"
+                Set-Content -Path "$($file).bak" -Value $fileContent
+            }
             $newFileContent = performFindAndReplace $fileContent
             #$newFileContent | Write-Host
             Set-Content -Path $file -Value $newFileContent
@@ -465,8 +479,14 @@ function findAndReplace()
             foreach($file in $fileList)
             {
                 $file = $directory + "\" + $file
-                $file | Write-Host
+                Write-Host $file
                 $fileContent = Get-Content $file
+                if($checkboxBackupFiles.checked -eq $True)
+                {
+                    #New-Item -Path "$($file).bak" -ItemType "file" -Value "$($fileContent)"
+                    New-Item -Path "$($file).bak" -ItemType "file"
+                    Set-Content -Path "$($file).bak" -Value $fileContent
+                }
                 $newFileContent = performFindAndReplace $fileContent
                 Set-Content -Path $file -Value $newFileContent
             }
@@ -537,13 +557,20 @@ function performFindAndReplace($text)
         #if($text -match $row.Find)
         #{
             #Write-Host "LineNumber: $($lineNumber) Line: $($line) Find: $($row.Find) Replace: $($row.Replace)"
-            $text = $text -replace $row.Find, $row.Replace
+            #$text -match $row.Find
+            $global:currentFind = $row.Find
+            $global:currentReplace = $row.Replace
+            [regex]::Replace($text, $row.Find, $global:MatchEvaluator);
+            #[regex]::Replace($text, [regex] $row.Find, $evaluator);
+            #$numMatches = [regex]::Matches("$($text)","$($row.Find)").Count
+            #$global:operationsCompleted = $global:operationsCompleted + $numMatches
+            #$text = $text -replace $row.Find, $row.Replace
         #}
+        
     }
-    
+    Write-Host $global:operationsCompleted
     return $text
 }
-
 
 
 
