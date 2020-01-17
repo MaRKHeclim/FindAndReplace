@@ -275,13 +275,13 @@ Out-Null -inputObject $findAndReplaceList.columns.add("Find")
 Out-Null -inputObject $findAndReplaceList.columns.add("Replace")
 
 $operationsCompleted = 0
-$currentFind = ""
-$currentReplace = ""
-$MatchEvaluator = [System.Text.RegularExpressions.MatchEvaluator] {  
-    param($found)
-    $global:operationsCompleted++
-    Write-Output ([regex]::Replace($found, [regex] $currentFind, $currentReplace))
-}
+#$currentFind = ""
+#$currentReplace = ""
+#$MatchEvaluator = [System.Text.RegularExpressions.MatchEvaluator] {  
+#    param($Match)
+#    $global:operationsCompleted++
+#    return $Match.Result($currentReplace)
+#}
 
 #handles what happens when the mouse enters a list box object
 #changes the mouse icon and affects the drop operation
@@ -449,7 +449,7 @@ function findAndReplace()
 {
     loadSearchCriteria
     
-    #if backup box is checked - create a filename.bak
+    $global:operationsCompleted = 0
     
     #if files iterate through files load the file perform find and replace save the file
     if($radiobuttonFiles.checked -eq $True)
@@ -459,6 +459,7 @@ function findAndReplace()
         {
             Write-Host $file
             $fileContent = (Get-Content $file -ReadCount 0) -join "`r`n"
+            #if backup box is checked - create a filename.bak
             if($checkboxBackupFiles.checked -eq $True)
             {
                 New-Item -Path "$($file).bak" -ItemType "file"
@@ -494,7 +495,7 @@ function findAndReplace()
     }
     #if text perform find and replace return results to dialog box
     
-    
+    Write-Host "Completed"
     
     #$rowNumber = -1
     #foreach($row in $global:findAndReplaceList)
@@ -558,9 +559,14 @@ function performFindAndReplace($text)
         #{
             #Write-Host "LineNumber: $($lineNumber) Line: $($line) Find: $($row.Find) Replace: $($row.Replace)"
             #$text -match $row.Find
-            $global:currentFind = $row.Find
-            $global:currentReplace = $row.Replace
-            [regex]::Replace($text, $row.Find, $global:MatchEvaluator);
+            #$global:currentFind = $row.Find
+            #$global:currentReplace = $row.Replace
+            #[regex]::Replace($text, $row.Find, $global:MatchEvaluator);
+            [regex]::Replace($text, $row.Find, [System.Text.RegularExpressions.MatchEvaluator] {  
+                param($Match)
+                $global:operationsCompleted++
+                return $Match.Result($row.Replace)
+            })
             #[regex]::Replace($text, [regex] $row.Find, $evaluator);
             #$numMatches = [regex]::Matches("$($text)","$($row.Find)").Count
             #$global:operationsCompleted = $global:operationsCompleted + $numMatches
@@ -571,7 +577,6 @@ function performFindAndReplace($text)
     Write-Host $global:operationsCompleted
     return $text
 }
-
 
 
 
