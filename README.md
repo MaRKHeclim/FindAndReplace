@@ -1,3 +1,5 @@
 # FindAndReplace
 
-Run the batch file to start the powershell. Not everything is working yet... be careful, manually backup any files you use this on. 
+Version 0.1
+
+Run Either the batch file or .exe. Takes .csv with headers of 'Find' and 'Replace' as input. 
