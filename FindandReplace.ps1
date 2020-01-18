@@ -7,14 +7,14 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $InputForm                       = New-Object system.Windows.Forms.Form
-$InputForm.ClientSize            = '460,400'
+$InputForm.ClientSize            = '460,415'
 $InputForm.text                  = "Find and Replace"
 $InputForm.TopMost               = $false
 
 $listboxDirectories              = New-Object system.Windows.Forms.ListBox
 $listboxDirectories.text         = "listBox"
 $listboxDirectories.width        = 300
-$listboxDirectories.height       = 207
+$listboxDirectories.height       = 205
 $listboxDirectories.location     = New-Object System.Drawing.Point(15,140)
 
 $groupboxRadioButtons            = New-Object system.Windows.Forms.Groupbox
@@ -49,8 +49,8 @@ $radiobuttonFiles.Font           = 'Microsoft Sans Serif,10'
 $listboxFileList                 = New-Object system.Windows.Forms.ListBox
 $listboxFileList.text            = "listBox"
 $listboxFileList.width           = 300
-$listboxFileList.height          = 170
-$listboxFileList.location        = New-Object System.Drawing.Point(15,177)
+$listboxFileList.height          = 205
+$listboxFileList.location        = New-Object System.Drawing.Point(15,140)
 
 $buttonBrowseCSV                 = New-Object system.Windows.Forms.Button
 $buttonBrowseCSV.text            = "Browse..."
@@ -77,7 +77,7 @@ $buttonBrowseFiles               = New-Object system.Windows.Forms.Button
 $buttonBrowseFiles.text          = "Browse..."
 $buttonBrowseFiles.width         = 70
 $buttonBrowseFiles.height        = 30
-$buttonBrowseFiles.location      = New-Object System.Drawing.Point(320,177)
+$buttonBrowseFiles.location      = New-Object System.Drawing.Point(320,140)
 $buttonBrowseFiles.Font          = 'Microsoft Sans Serif,10'
 
 $buttonReplace                   = New-Object system.Windows.Forms.Button
@@ -91,7 +91,7 @@ $buttonClearFileList             = New-Object system.Windows.Forms.Button
 $buttonClearFileList.text        = "Clear"
 $buttonClearFileList.width       = 50
 $buttonClearFileList.height      = 30
-$buttonClearFileList.location    = New-Object System.Drawing.Point(394,177)
+$buttonClearFileList.location    = New-Object System.Drawing.Point(394,140)
 $buttonClearFileList.Font        = 'Microsoft Sans Serif,10'
 
 $checkboxBackupFiles             = New-Object system.Windows.Forms.CheckBox
@@ -122,7 +122,15 @@ $buttonClearDirectory.height     = 30
 $buttonClearDirectory.location   = New-Object System.Drawing.Point(394,140)
 $buttonClearDirectory.Font       = 'Microsoft Sans Serif,10'
 
-$InputForm.controls.AddRange(@($listboxDirectories,$groupboxRadioButtons,$labelCSV,$listboxFileList,$buttonBrowseCSV,$buttonNew,$buttonBrowseDirectory,$buttonBrowseFiles,$buttonReplace,$buttonClearFileList,$checkboxBackupFiles,$listboxCSVs,$buttonClearCSVs,$buttonClearDirectory))
+$labelResults                    = New-Object system.Windows.Forms.Label
+$labelResults.AutoSize           = $true
+$labelResults.width              = 25
+$labelResults.height             = 10
+$labelResults.location           = New-Object System.Drawing.Point(21,392)
+$labelResults.Font               = 'Microsoft Sans Serif,10'
+$labelResults.ForeColor          = "#4a90e2"
+
+$InputForm.controls.AddRange(@($listboxDirectories,$groupboxRadioButtons,$labelCSV,$listboxFileList,$buttonBrowseCSV,$buttonNew,$buttonBrowseDirectory,$buttonBrowseFiles,$buttonReplace,$buttonClearFileList,$checkboxBackupFiles,$listboxCSVs,$buttonClearCSVs,$buttonClearDirectory,$labelResults))
 $groupboxRadioButtons.controls.AddRange(@($radiobuttonDirectory,$radiobuttonFiles))
 
 
@@ -450,14 +458,14 @@ function findAndReplace()
     loadSearchCriteria
     
     $global:operationsCompleted = 0
-    
+    $labelResults.text = ""
     #if files iterate through files load the file perform find and replace save the file
     if($radiobuttonFiles.checked -eq $True)
     {
-        Write-Host "Replacing items in Files"
+        #Write-Host "Replacing items in Files"
         foreach($file in $listboxFileList.Items)
         {
-            Write-Host $file
+            #Write-Host $file
             $fileContent = (Get-Content $file -ReadCount 0) -join "`r`n"
             #if backup box is checked - create a filename.bak
             if($checkboxBackupFiles.checked -eq $True)
@@ -473,15 +481,15 @@ function findAndReplace()
     #if folders iterate through the folders then iterate through files load the file perform find and replace save the file
     if($radiobuttonDirectory.checked -eq $True)
     {
-        Write-Host "Replacing items in Directories"
+        #Write-Host "Replacing items in Directories"
         foreach($directory in $listboxDirectories.Items)
         {
             $fileList = Get-ChildItem -Path $directory -Name
             foreach($file in $fileList)
             {
                 $file = $directory + "\" + $file
-                Write-Host $file
-                $fileContent = Get-Content $file
+                #Write-Host $file
+                $fileContent = (Get-Content $file -ReadCount 0) -join "`r`n"
                 if($checkboxBackupFiles.checked -eq $True)
                 {
                     #New-Item -Path "$($file).bak" -ItemType "file" -Value "$($fileContent)"
@@ -494,8 +502,7 @@ function findAndReplace()
         }
     }
     #if text perform find and replace return results to dialog box
-    
-    Write-Host "Completed"
+    $labelResults.text = "Completed. $($global:operationsCompleted) replacements were made."
     
     #$rowNumber = -1
     #foreach($row in $global:findAndReplaceList)
@@ -525,13 +532,13 @@ function loadSearchCriteria()
     Out-Null -inputObject $findAndReplaceList.columns.add("Replace")
     foreach($file in $listboxCSVs.Items)
     {
-        $file | Write-Host
+        #$file | Write-Host
         if($file -like "*.csv")
         {
             $currentCSVAsFile = Get-Content -Path $file
             $headers = $currentCSVAsFile[0] -split ","
             $currentCSV = Import-Csv -Path $file -Header $headers
-            $currentCSV.count | Write-Host
+            #$currentCSV.count | Write-Host
             $rowNumber = -1
             foreach($row in $currentCSV)
             {
@@ -562,21 +569,24 @@ function performFindAndReplace($text)
             #$global:currentFind = $row.Find
             #$global:currentReplace = $row.Replace
             #[regex]::Replace($text, $row.Find, $global:MatchEvaluator);
-            [regex]::Replace($text, $row.Find, [System.Text.RegularExpressions.MatchEvaluator] {  
+            $text = [regex]::Replace($text, $row.Find, [System.Text.RegularExpressions.MatchEvaluator] {  
                 param($Match)
                 $global:operationsCompleted++
                 return $Match.Result($row.Replace)
             })
-            #[regex]::Replace($text, [regex] $row.Find, $evaluator);
+            #[regex]::Replace($text, [regex] $row.Find, $evaluator
             #$numMatches = [regex]::Matches("$($text)","$($row.Find)").Count
             #$global:operationsCompleted = $global:operationsCompleted + $numMatches
+            
+            #$text = [regex]::Replace($text, $row.Find, $row.Replace);
             #$text = $text -replace $row.Find, $row.Replace
         #}
         
     }
-    Write-Host $global:operationsCompleted
+    #Write-Host $global:operationsCompleted
     return $text
 }
+
 
 
 
