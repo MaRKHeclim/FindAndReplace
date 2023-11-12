@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindAndReplace", "FindAndReplace.csproj", "{6A2E18DF-B500-4569-AEB1-508107E14853}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindAndReplace", "FindAndReplace.csproj", "{6A2E18DF-B500-4569-AEB1-508107E14853}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindAndReplace.UnitTests", "..\FindAndReplace.UnitTests\FindAndReplace.UnitTests.csproj", "{14C4873C-7BEF-4187-A979-B080C63CC8B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindAndReplace.UnitTests", "..\FindAndReplace.UnitTests\FindAndReplace.UnitTests.csproj", "{14C4873C-7BEF-4187-A979-B080C63CC8B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindAndReplace.IntegrationTests", "..\FindAndReplace.IntegrationTests\FindAndReplace.IntegrationTests.csproj", "{679A216F-2DD3-44DD-A079-A9E90EC15FBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindAndReplace.IntegrationTests", "..\FindAndReplace.IntegrationTests\FindAndReplace.IntegrationTests.csproj", "{679A216F-2DD3-44DD-A079-A9E90EC15FBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7580C429-CD7E-42E8-B966-16963172032B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		..\..\..\Notes\Variable_Prefixes.txt = ..\..\..\Notes\Variable_Prefixes.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
