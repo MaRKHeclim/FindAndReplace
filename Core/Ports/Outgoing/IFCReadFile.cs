@@ -1,11 +1,15 @@
 ﻿namespace FindAndReplace.Core.Ports.Outgoing
 {
+    using System.Data;
+
     internal interface IFCReadFile
     {
-        public string fncReadFileAsString(string p_vstFilePath);
+        public string fncReadFileAsString(string p_vstAbsoluteFilePath);
 
-        public object fncReadCSVFileAsObject(string p_vstFilePath);
+        public string[] fncReadFileAsStringArray(string p_vstAbsoluteFilePath);
 
-        public object fncReadJSONFileAsObject(string p_vstFilePath);
+        public DataTable fncReadCSVFileAsDataTable(string p_vstAbsoluteFilePath);
+
+        public object fncReadJSONFileAsObject(string p_vstAbsoluteFilePath);
     }
 }

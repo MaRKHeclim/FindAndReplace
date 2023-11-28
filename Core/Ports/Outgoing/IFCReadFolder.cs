@@ -2,8 +2,8 @@
 {
     internal interface IFCReadFolder
     {
-        public string[] fncReadFolderAsFilePathArray(string p_vstFolderPath, bool p_vbnIncludeFolders);
+        public string[] fncReadFolderAsFilePathArray(string p_vstAbsoluteFolderPath, bool p_vbnIncludeFolders);
 
-        public object[] fncReadFolderAsObjectArray(string p_vstFolderPath, bool p_vbnIncludeFolders);
+        public FileSystemInfo[] fncReadFolderAsObjectArray(string p_vstAbsoluteFolderPath, bool p_vbnIncludeFolders);
     }
 }
