@@ -1,19 +1,21 @@
 ﻿namespace FindAndReplace.Core.Ports.Outgoing
 {
-    internal interface IFCWriteFile
-    {
-        public void fncWriteStringToFile(string p_vstAbsoluteFilePath, string p_vstFileContent);
+	internal interface IFCWriteFile
+	{
+		public void subWriteStringToFile(string p_vstAbsoluteFilePath, string p_vstFileContent);
 
-        public void fncWriteObjectAsJSONToFile(string p_vstAbsoluteFilePath, object p_objFileContent);
+		public void subWriteObjectAsJSONToFile(string p_vstAbsoluteFilePath, object p_objFileContent);
 
-        public void fncWriteObjectAsCSVToFile(string p_vstAbsoluteFilePath, object p_objFileContent);
+		public void subWriteEnumerableToFileAsCSV(string p_vstAbsoluteFilePath, System.Collections.IEnumerable p_lstFileContent);
 
-        public void fncCreateBAKOfFile(string p_vstAbsoluteFilePath);
+		public void subCreateBAKOfFile(string p_vstAbsoluteFilePath);
 
-        public void fncRestoreBAKOfFile(string p_vstAbsoluteFilePath);
+		public void subRestoreBAKOfFile(string p_vstAbsoluteFilePath);
 
-        public void fncDeleteFile(string p_vstAbsoluteFilePath);
+		public void subDeleteFile(string p_vstAbsoluteFilePath);
 
-        public void fncRenameFile(string p_vstAbsoluteFilePath, string p_vstNewFileName);
-    }
+		public void subRenameFile(string p_vstAbsoluteFilePath, string p_vstNewFileName);
+
+		public void subCreateFile(string p_vstAbsoluteFilePath);
+	}
 }

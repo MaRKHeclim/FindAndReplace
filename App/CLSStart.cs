@@ -1,34 +1,34 @@
-using FindAndReplace.Core.DataStructures;
-
 namespace FindAndReplace.App
 {
-    internal static class CLSStart
-    {
-        /// <summary>The main entry point for the application.</summary>
-        /// <param name="p_aryArguments"></param>
-        [STAThread]
-        public static void Main(string[] p_aryArguments)
-        {
-            CLSInstanceSettings objSettings = new CLSInstanceSettings();
+	using FindAndReplace.Core.DataStructures;
 
-            // TODO: Parse arguments
+	internal static class CLSStart
+	{
+		/// <summary>The main entry point for the application.</summary>
+		/// <param name="p_aryArguments"></param>
+		[STAThread]
+		public static void Main(string[] p_aryArguments)
+		{
+			CLSInstanceSettings objSettings = new CLSInstanceSettings();
 
-            // Run application
-            subRunApp(objSettings);
-        }
+			// TODO: Parse arguments
 
-        private static void subRunApp(CLSInstanceSettings p_objInstanceSettings)
-        {
-            CLSApplication objApplication = new CLSApplication(p_objInstanceSettings);
+			// Run application
+			subRunApp(objSettings);
+		}
 
-            // Starts GUI/Web Server if necessary
-            objApplication.subStart();
+		private static void subRunApp(CLSInstanceSettings p_objInstanceSettings)
+		{
+			CLSApplication objApplication = new CLSApplication(p_objInstanceSettings);
 
-            // If necessary, do stuff
-            // TODO: Determine how to handle running as a CLI app
+			// Starts GUI/Web Server if necessary
+			objApplication.subStart();
 
-            // Stop application
-            objApplication.subStop();
-        }
-    }
+			// If necessary, do stuff
+			// TODO: Determine how to handle running as a CLI app
+
+			// Stop application
+			objApplication.subStop();
+		}
+	}
 }
