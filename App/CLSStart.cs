@@ -2,24 +2,27 @@ namespace FindAndReplace.App
 {
 	using FindAndReplace.Core.DataStructures;
 
+	/// <summary>
+	/// The main entry point for the application.
+	/// </summary>
 	internal static class CLSStart
 	{
 		/// <summary>The main entry point for the application.</summary>
-		/// <param name="p_aryArguments"></param>
+		/// <param name="p_aryArguments">Command-line arguments passed to the program.</param>
 		[STAThread]
 		public static void Main(string[] p_aryArguments)
 		{
-			CLSInstanceSettings objSettings = new CLSInstanceSettings();
+			if (p_aryArguments.Length < 1)
+			{
+				subDisplayHelp();
+				return;
+			}
 
-			// TODO: Parse arguments
+			CLSInstanceSettings objInstanceSettings = new CLSInstanceSettings();
+			objInstanceSettings.subParseCommandLineArguments(p_aryArguments);
 
 			// Run application
-			subRunApp(objSettings);
-		}
-
-		private static void subRunApp(CLSInstanceSettings p_objInstanceSettings)
-		{
-			CLSApplication objApplication = new CLSApplication(p_objInstanceSettings);
+			CLSApplication objApplication = new CLSApplication(objInstanceSettings);
 
 			// Starts GUI/Web Server if necessary
 			objApplication.subStart();
@@ -29,6 +32,11 @@ namespace FindAndReplace.App
 
 			// Stop application
 			objApplication.subStop();
+		}
+
+		private static void subDisplayHelp()
+		{
+			Console.WriteLine("Usage: FindAndReplace [options]");
 		}
 	}
 }

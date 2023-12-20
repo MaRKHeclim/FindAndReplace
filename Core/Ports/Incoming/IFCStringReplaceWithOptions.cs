@@ -5,9 +5,16 @@
 namespace FindAndReplace.Core.Ports.Incoming
 {
 	using FindAndReplace.Core.DataStructures;
+	using System.Collections;
 
+	/// <summary>
+	/// Interface for single string replace operations.
+	/// </summary>
 	public interface IFCStringReplaceWithOptions
 	{
+		// TODO: Add Documentation
+		public string fncStringReplaceList(string p_vstUSSearchIn, IEnumerable<CLSFindReplaceRecord> p_enbFindReplaceRecords);
+
 		/// <summary>Manual entry text search. Performes a find and replace operation with the provided parameters.</summary>
 		/// <param name="p_vstUSSearchIn">The string to search in.</param>
 		/// <param name="p_vstUSFind">The string to find.</param>
@@ -20,6 +27,6 @@ namespace FindAndReplace.Core.Ports.Incoming
 		/// If using Regex, creates ^ and $ anchors for each line if set to <c>true</c>. If set to <c>false</c>, ^ only matches the beginning of the string, and $ only matches the end of the string.
 		/// </param>
 		/// <returns>The string resulting from performing the find and replace operation.</returns>
-		public static abstract string fncStringReplaceWithOptions(string p_vstUSSearchIn, string p_vstUSFind, string p_vstUSReplace, ENMFindMode p_enmFindMode, bool p_vbnMatchCase, bool p_vbnMatchWholeWord, bool p_vbnDotMatchesNewline, bool p_vbnTreatLinesAsSeparateStrings);
+		public string fncStringReplaceWithOptions(string p_vstUSSearchIn, string p_vstUSFind, string p_vstUSReplace, ENMFindMode p_enmFindMode, bool p_vbnMatchCase, bool p_vbnMatchWholeWord, bool p_vbnDotMatchesNewline, bool p_vbnTreatLinesAsSeparateStrings);
 	}
 }

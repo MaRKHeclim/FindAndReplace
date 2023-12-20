@@ -9,19 +9,27 @@
 	internal class CLSReadFolder : Core.Ports.Outgoing.IFCReadFolder
 	{
 		/// <inheritdoc/>
-		public string[] fncReadFolderAsFilePathArray(string p_vstAbsoluteFolderPath, bool p_vbnIncludeFolders)
+		public List<string> fncReadFolderAsFilePathArray(string p_vstAbsoluteFolderPath, bool p_vbnIncludeFolders, bool p_vbnRecurse)
 		{
-			string[] aryFilePaths;
-			if (p_vbnIncludeFolders)
+			List<string> lstFilePaths = new List<string>();
+			if (p_vbnRecurse)
 			{
-				aryFilePaths = Directory.EnumerateFileSystemEntries(p_vstAbsoluteFolderPath).ToArray();
-			}
-			else
-			{
-				aryFilePaths = Directory.EnumerateFiles(p_vstAbsoluteFolderPath).ToArray();
+				foreach (string vstSubFolderPath in Directory.EnumerateDirectories(p_vstAbsoluteFolderPath))
+				{
+					lstFilePaths.AddRange(this.fncReadFolderAsFilePathArray(vstSubFolderPath, p_vbnIncludeFolders, p_vbnRecurse));
+				}
+
+				if (p_vbnIncludeFolders)
+				{
+					lstFilePaths.AddRange(Directory.EnumerateFileSystemEntries(p_vstAbsoluteFolderPath));
+				}
+				else
+				{
+					lstFilePaths.AddRange(Directory.EnumerateFiles(p_vstAbsoluteFolderPath));
+				}
 			}
 
-			return aryFilePaths;
+			return lstFilePaths;
 		}
 
 		/// <inheritdoc/>

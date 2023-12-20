@@ -1,7 +1,9 @@
 ﻿namespace FindAndReplace.App
 {
 	using FindAndReplace.Core.DataStructures;
+	using FindAndReplace.Core.Ports.Incoming;
 	using FindAndReplace.Core.Ports.Outgoing;
+	using FindAndReplace.Core.Services;
 	using FindAndReplace.SecondaryAdapters;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
@@ -45,6 +47,14 @@
 		public void subStopAsync()
 		{
 			this.subStopApplication(true);
+		}
+
+		public T fncGetService<T>()
+		{
+			using (IServiceScope objScope = this.objHost.Services.CreateScope())
+			{
+				return objScope.ServiceProvider.GetRequiredService<T>();
+			}
 		}
 
 		private void subStartApplication(bool p_vbnAsync = false)
@@ -102,9 +112,15 @@
 		{
 			// Configure services
 			// p_objServices.Add...
+
+			// Helper services
 			p_objServices.AddTransient<IFCReadFile, CLSReadFile>();
 			p_objServices.AddTransient<IFCReadFolder, CLSReadFolder>();
 			p_objServices.AddTransient<IFCWriteFile, CLSWriteFile>();
+
+			// Core services
+			p_objServices.AddSingleton<IFCStringReplaceWithOptions, CLSStringReplaceWithOptions>();
+			p_objServices.AddSingleton<IFCBulkSearch, CLSBulkSearch>();
 		}
 
 		private void subConfigureUI()

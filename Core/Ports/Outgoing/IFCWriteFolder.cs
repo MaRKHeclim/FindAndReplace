@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace FindAndReplace.Core.Ports.Outgoing
+﻿namespace FindAndReplace.Core.Ports.Outgoing
 {
 	internal interface IFCWriteFolder
 	{

@@ -12,7 +12,28 @@ namespace FindAndReplace.Core.Services
 	/// <inheritdoc/>
 	public class CLSStringReplaceWithOptions : Core.Ports.Incoming.IFCStringReplaceWithOptions
 	{
-		public static string fncStringReplaceWithOptions(string p_vstUSSearchIn, string p_vstUSFind, string p_vstUSReplace, ENMFindMode p_enmFindMode, bool p_vbnMatchCase = true, bool p_vbnMatchWholeWord = false, bool p_vbnDotMatchesNewline = false, bool p_vbnTreatLinesAsSeparateStrings = true )
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CLSStringReplaceWithOptions"/> class.
+		/// </summary>
+		public CLSStringReplaceWithOptions()
+		{
+		}
+
+		/// <inheritdoc/>
+		// TODO: Add tests for this method.
+		public string fncStringReplaceList(string p_vstUSSearchIn, IEnumerable<CLSFindReplaceRecord> p_enbFindReplaceRecords)
+		{
+			string vstResult = p_vstUSSearchIn;
+			foreach (CLSFindReplaceRecord clsFindReplaceRecord in p_enbFindReplaceRecords)
+			{
+				vstResult = this.fncStringReplaceWithOptions(vstResult, clsFindReplaceRecord.vstFind, clsFindReplaceRecord.vstReplace, clsFindReplaceRecord.enmFindMode, clsFindReplaceRecord.vbnMatchCase, clsFindReplaceRecord.vbnMatchWholeWord, clsFindReplaceRecord.vbnDotMatchesNewline, clsFindReplaceRecord.vbnTreatLinesAsSeparateStrings);
+			}
+
+			return vstResult;
+		}
+
+		/// <inheritdoc/>
+		public string fncStringReplaceWithOptions(string p_vstUSSearchIn, string p_vstUSFind, string p_vstUSReplace, ENMFindMode p_enmFindMode, bool p_vbnMatchCase = true, bool p_vbnMatchWholeWord = false, bool p_vbnDotMatchesNewline = false, bool p_vbnTreatLinesAsSeparateStrings = true )
 		{
 			string vstResult = string.Empty;
 			if (p_vstUSFind == string.Empty)
@@ -23,7 +44,7 @@ namespace FindAndReplace.Core.Services
 			{
 				string vstUSFind = Regex.Escape(p_vstUSFind);
 				vstUSFind = $"\\b{vstUSFind}\\b";
-				vstResult = fncRegExReplace(p_vstUSSearchIn, vstUSFind, p_vstUSReplace, p_vbnMatchCase, p_vbnDotMatchesNewline, p_vbnTreatLinesAsSeparateStrings);
+				vstResult = this.fncRegExReplace(p_vstUSSearchIn, vstUSFind, p_vstUSReplace, p_vbnMatchCase, p_vbnDotMatchesNewline, p_vbnTreatLinesAsSeparateStrings);
 			}
 			else if (p_enmFindMode == ENMFindMode.Normal)
 			{
@@ -50,7 +71,7 @@ namespace FindAndReplace.Core.Services
 			}
 			else if (p_enmFindMode == ENMFindMode.RegularExpression)
 			{
-				vstResult = fncRegExReplace(p_vstUSSearchIn, p_vstUSFind, p_vstUSReplace, p_vbnMatchCase, p_vbnDotMatchesNewline, p_vbnTreatLinesAsSeparateStrings);
+				vstResult = this.fncRegExReplace(p_vstUSSearchIn, p_vstUSFind, p_vstUSReplace, p_vbnMatchCase, p_vbnDotMatchesNewline, p_vbnTreatLinesAsSeparateStrings);
 			}
 
 			return vstResult;
@@ -69,7 +90,7 @@ namespace FindAndReplace.Core.Services
 		///   <para>Note: Windows newline characters are of the form \r\n and the $ anchor only takes the place of \n . Consider replacing $ with (?=\r)?$ or \r?$ .</para>
 		/// </param>
 		/// <returns>The string resulting from performing the find and replace operation.</returns>
-		internal static string fncRegExReplace(string p_vstUSSearchIn, string p_vstUSFind, string p_vstUSReplace, bool p_vbnMatchCase, bool p_vbnDotMatchesNewline, bool p_vbnTreatLinesAsSeparateStrings)
+		internal string fncRegExReplace(string p_vstUSSearchIn, string p_vstUSFind, string p_vstUSReplace, bool p_vbnMatchCase, bool p_vbnDotMatchesNewline, bool p_vbnTreatLinesAsSeparateStrings)
 		{
 			string vstResult = string.Empty;
 			RegexOptions enmRegexOptions = RegexOptions.None;
