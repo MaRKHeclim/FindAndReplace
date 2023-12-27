@@ -1,5 +1,6 @@
 namespace FindAndReplace.App
 {
+	using System;
 	using FindAndReplace.Core.DataStructures;
 
 	/// <summary>
@@ -40,3 +41,13 @@ namespace FindAndReplace.App
 		}
 	}
 }
+
+// TODO: Add support for renaming files/folders
+// TODO: Test Mode?
+// TODO: Undo Operation
+// TODO: Count replacements
+// TODO: Tie UI to APP
+// TODO: Add Recording function (save searches to CSV)
+// TODO: Add method to process all CSV lists into a List of CLSFindReplaceRecord
+// TODO: Add more testing
+// TODO: Finish Documentation

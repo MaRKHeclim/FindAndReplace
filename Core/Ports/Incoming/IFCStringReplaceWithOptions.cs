@@ -5,7 +5,7 @@
 namespace FindAndReplace.Core.Ports.Incoming
 {
 	using FindAndReplace.Core.DataStructures;
-	using System.Collections;
+	using System.Collections.Generic;
 
 	/// <summary>
 	/// Interface for single string replace operations.

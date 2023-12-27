@@ -1,10 +1,13 @@
 ﻿namespace FindAndReplace.App
 {
+	using System.Windows.Forms;
+
 	using FindAndReplace.Core.DataStructures;
 	using FindAndReplace.Core.Ports.Incoming;
 	using FindAndReplace.Core.Ports.Outgoing;
 	using FindAndReplace.Core.Services;
 	using FindAndReplace.SecondaryAdapters;
+
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
 

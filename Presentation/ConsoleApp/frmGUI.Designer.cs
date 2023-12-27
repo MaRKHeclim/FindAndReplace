@@ -1,5 +1,8 @@
 ﻿namespace FindAndReplace
 {
+	using System.Drawing;
+	using System.Windows.Forms;
+
 	partial class frmGUI
 	{
 		/// <summary>

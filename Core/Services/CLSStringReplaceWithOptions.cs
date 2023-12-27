@@ -6,6 +6,7 @@
 
 namespace FindAndReplace.Core.Services
 {
+	using System.Collections.Generic;
 	using System.Text.RegularExpressions;
 	using FindAndReplace.Core.DataStructures;
 

@@ -1,5 +1,7 @@
 ﻿namespace FindAndReplace.Core.Services
 {
+	using System.Collections.Generic;
+	using System.Threading.Tasks;
 	using FindAndReplace.Core.DataStructures;
 	using FindAndReplace.Core.Ports.Incoming;
 	using FindAndReplace.Core.Ports.Outgoing;
