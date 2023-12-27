@@ -1,0 +1,6 @@
+# Disable Code Analysis for items in the zzzTests folder  
+[*.cs]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
+dotnet_diagnostic.CS1591.severity = none
+dotnet_diagnostic.CS8669.severity = none

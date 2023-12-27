@@ -1,5 +1,10 @@
-﻿namespace FindAndReplace.SecondaryAdapters
+﻿// <copyright file="CLSReadFolder.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.SecondaryAdapters
 {
+	using System.Collections.Generic;
 	using System.IO;
 
 	/// <summary>
@@ -33,16 +38,16 @@
 		}
 
 		/// <inheritdoc/>
-		public FileSystemInfo[] fncReadFolderAsObjectArray(string p_vstAbsoluteFolderPath, bool p_vbnIncludeFolders)
+		public IEnumerable<FileSystemInfo> fncReadFolderAsObjectArray(string p_vstAbsoluteFolderPath, bool p_vbnIncludeFolders)
 		{
-			FileSystemInfo[] aryFileSystemInfos;
+			IEnumerable<FileSystemInfo> aryFileSystemInfos;
 			if (p_vbnIncludeFolders)
 			{
-				aryFileSystemInfos = new DirectoryInfo(p_vstAbsoluteFolderPath).EnumerateFileSystemInfos().ToArray();
+				aryFileSystemInfos = new DirectoryInfo(p_vstAbsoluteFolderPath).EnumerateFileSystemInfos();
 			}
 			else
 			{
-				aryFileSystemInfos = new DirectoryInfo(p_vstAbsoluteFolderPath).EnumerateFiles().ToArray();
+				aryFileSystemInfos = new DirectoryInfo(p_vstAbsoluteFolderPath).EnumerateFiles();
 			}
 
 			return aryFileSystemInfos;

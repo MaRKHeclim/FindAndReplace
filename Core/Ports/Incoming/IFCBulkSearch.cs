@@ -1,4 +1,8 @@
-﻿namespace FindAndReplace.Core.Ports.Incoming
+﻿// <copyright file="IFCBulkSearch.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.Core.Ports.Incoming
 {
 	using FindAndReplace.Core.DataStructures;
 	using System.Collections.Generic;

@@ -1,4 +1,8 @@
-﻿namespace FindAndReplace.Core.Ports.Outgoing
+﻿// <copyright file="IFCWriteFolder.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.Core.Ports.Outgoing
 {
 	internal interface IFCWriteFolder
 	{

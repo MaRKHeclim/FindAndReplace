@@ -1,4 +1,8 @@
-﻿namespace FindAndReplace.Core.Ports.Outgoing
+﻿// <copyright file="IFCReadFile.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.Core.Ports.Outgoing
 {
 	internal interface IFCReadFile
 	{
@@ -8,7 +12,7 @@
 
 		public System.Data.DataTable fncReadCSVFileAsDataTable(string p_vstAbsoluteFilePath);
 
-		public IEnumerable<T> fncReadCSVFileAsEnumerable<T>(string p_vstAbsoluteFilePath);
+		public System.Collections.Generic.IEnumerable<T> fncReadCSVFileAsEnumerable<T>(string p_vstAbsoluteFilePath);
 
 		public object fncReadJSONFileAsObject(string p_vstAbsoluteFilePath);
 	}

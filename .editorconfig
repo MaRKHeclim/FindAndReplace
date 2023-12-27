@@ -232,3 +232,4 @@ dotnet_diagnostic.CA5379.severity = suggestion
 dotnet_diagnostic.CA5384.severity = suggestion
 dotnet_diagnostic.CA5385.severity = suggestion
 dotnet_diagnostic.CA5397.severity = suggestion
+

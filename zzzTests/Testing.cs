@@ -1,4 +1,8 @@
-﻿namespace FindAndReplace.UnitTests
+﻿// <copyright file="Testing.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.UnitTests
 {
 	using System.Collections.Generic;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;

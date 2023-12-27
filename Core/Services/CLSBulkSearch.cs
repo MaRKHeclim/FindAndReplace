@@ -1,4 +1,8 @@
-﻿namespace FindAndReplace.Core.Services
+﻿// <copyright file="CLSBulkSearch.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.Core.Services
 {
 	using System.Collections.Generic;
 	using System.Threading.Tasks;

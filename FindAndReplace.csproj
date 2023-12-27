@@ -6,18 +6,40 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<Nullable>enable</Nullable>
 		<WarningLevel>7</WarningLevel>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<StartupObject>FindAndReplace.App.CLSStart</StartupObject>
 	</PropertyGroup>
-	
-	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<IsTestProject>true</IsTestProject>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Debug'">
+		<PackageReference Include="coverlet.collector" Version="6.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
 		<PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Release'">
+	  <Compile Remove="zzzTests\**" />
+	  <EmbeddedResource Remove="zzzTests\**" />
+	  <None Remove="zzzTests\**" />
+	</ItemGroup>
 	
-	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<None Remove="zzzTests\" />
+	<ItemGroup>
+		<None Remove="stylecop.json" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<AdditionalFiles Include="stylecop.json" />
 	</ItemGroup>
 
 	<ItemGroup>

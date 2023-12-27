@@ -1,4 +1,8 @@
-﻿namespace FindAndReplace.Core.Services.Tests
+﻿// <copyright file="CLSStringReplaceWithOptionsTests.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.Core.Services.Tests
 {
 	using System;
 	using FindAndReplace.Core.DataStructures;

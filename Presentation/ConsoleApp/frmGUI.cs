@@ -1,3 +1,7 @@
+// <copyright file="frmGUI.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
 namespace FindAndReplace
 {
 	using System;
@@ -7,12 +11,11 @@ namespace FindAndReplace
 	{
 		public frmGUI()
 		{
-			InitializeComponent();
+			this.InitializeComponent();
 		}
 
 		private void GUI_Load(object sender, EventArgs e)
 		{
-
 		}
 
 		private void button2_Click(object sender, EventArgs e)

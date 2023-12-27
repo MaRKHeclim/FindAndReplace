@@ -1,4 +1,8 @@
-﻿namespace FindAndReplace.Core.DataStructures
+﻿// <copyright file="CLSInstanceSettings.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.Core.DataStructures
 {
 	internal class CLSInstanceSettings
 	{

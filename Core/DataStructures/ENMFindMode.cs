@@ -1,4 +1,4 @@
-﻿// <copyright file="IFCStringReplaceWithOptions.cs" company="Matthew Klemetsen">
+﻿// <copyright file="ENMFindMode.cs" company="Matthew Klemetsen">
 // Copyright (c) Matthew Klemetsen. All rights reserved.
 // </copyright>
 

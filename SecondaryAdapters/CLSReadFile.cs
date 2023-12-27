@@ -1,5 +1,11 @@
-﻿namespace FindAndReplace.SecondaryAdapters
+﻿// <copyright file="CLSReadFile.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.SecondaryAdapters
 {
+	using System;
+	using System.Collections.Generic;
 	using System.Data;
 	using System.IO;
 	using CsvHelper;

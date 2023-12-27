@@ -1,3 +1,7 @@
+// <copyright file="CLSStart.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
 namespace FindAndReplace.App
 {
 	using System;

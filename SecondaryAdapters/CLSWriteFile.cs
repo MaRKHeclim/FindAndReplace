@@ -1,4 +1,8 @@
-﻿namespace FindAndReplace.SecondaryAdapters
+﻿// <copyright file="CLSWriteFile.cs" company="Matthew Klemetsen">
+// Copyright (c) Matthew Klemetsen. All rights reserved.
+// </copyright>
+
+namespace FindAndReplace.SecondaryAdapters
 {
 	using System.Collections;
 	using System.IO;
