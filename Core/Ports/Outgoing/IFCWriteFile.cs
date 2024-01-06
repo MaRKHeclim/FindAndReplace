@@ -10,7 +10,7 @@ namespace FindAndReplace.Core.Ports.Outgoing
 
 		public void subWriteObjectAsJSONToFile(string p_vstAbsoluteFilePath, object p_objFileContent);
 
-		public void subWriteEnumerableToFileAsCSV(string p_vstAbsoluteFilePath, System.Collections.IEnumerable p_lstFileContent);
+		public void subWriteEnumerableToFileAsCSV(string p_vstAbsoluteFilePath, System.Collections.IEnumerable p_enbFileContent);
 
 		public void subCreateBAKOfFile(string p_vstAbsoluteFilePath);
 

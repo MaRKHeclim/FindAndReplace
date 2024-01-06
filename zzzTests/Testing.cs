@@ -4,7 +4,9 @@
 
 namespace FindAndReplace.UnitTests
 {
+	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 	[TestClass]
@@ -19,10 +21,18 @@ namespace FindAndReplace.UnitTests
 			numbers.Push("three");
 			numbers.Push("four");
 			numbers.Push("five");
+			string[] numbersArray = numbers.ToArray().Reverse().ToArray();
+			foreach (string number in numbersArray)
+			{
+				Console.WriteLine(number);
+			}
 
 			string[] array = new string[] { "one", "two", "three", "four", "five" };
-
-			Assert.AreEqual(array, numbers.ToArray());
+			for (int i = 0; i < array.Length; i++)
+			{
+				Console.WriteLine(array[i]);
+				Assert.AreEqual(array[i], numbersArray[i]);
+			}
 		}
 	}
 }
