@@ -20,6 +20,7 @@ namespace FindAndReplace.App
 		private IHostBuilder objHostBuilder;
 		private IHost objHost;
 		private CLSInstanceSettings objInstanceSettings;
+		private FRMGui frmGUI;
 
 		public CLSApplication(CLSInstanceSettings p_objInstanceSettings)
 		{
@@ -64,6 +65,11 @@ namespace FindAndReplace.App
 			}
 		}
 
+		private void subOnFormClosed(object sender, FormClosedEventArgs objEventArgs)
+		{
+			this.subStopApplication();
+		}
+
 		private void subStartApplication(bool p_vbnAsync = false)
 		{
 			if (p_vbnAsync)
@@ -77,7 +83,11 @@ namespace FindAndReplace.App
 
 			if (this.objInstanceSettings.vbnRunAsGUIApp)
 			{
-				Application.Run(new frmGUI());
+				IFCBulkSearch objBulkSearch = this.objHost.Services.GetRequiredService<IFCBulkSearch>();
+				IFCStringReplaceWithOptions objStringReplaceWithOptions = this.objHost.Services.GetRequiredService<IFCStringReplaceWithOptions>();
+				this.frmGUI = new FRMGui(objBulkSearch, objStringReplaceWithOptions);
+				this.frmGUI.FormClosed += this.subOnFormClosed;
+				Application.Run(this.frmGUI); // Calls frmGui.Show() internally.
 			}
 		}
 

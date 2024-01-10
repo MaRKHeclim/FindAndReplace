@@ -6,6 +6,7 @@ namespace FindAndReplace.Core.Ports.Outgoing
 {
 	internal interface IFCReadFile
 	{
+		// TODO: Add Documentation
 		public string fncReadFileAsString(string p_vstAbsoluteFilePath);
 
 		public string[] fncReadFileAsStringArray(string p_vstAbsoluteFilePath);

@@ -6,6 +6,7 @@ namespace FindAndReplace.Core.Ports.Outgoing
 {
 	internal interface IFCWriteFile
 	{
+		// TODO: Add Documentation
 		public void subWriteStringToFile(string p_vstAbsoluteFilePath, string p_vstFileContent);
 
 		public void subWriteObjectAsJSONToFile(string p_vstAbsoluteFilePath, object p_objFileContent);

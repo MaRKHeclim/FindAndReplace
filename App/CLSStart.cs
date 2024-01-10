@@ -36,7 +36,7 @@ namespace FindAndReplace.App
 			// TODO: Determine how to handle running as a CLI app
 
 			// Stop application
-			objApplication.subStop();
+			// objApplication.subStop();
 		}
 
 		private static void subDisplayHelp()
@@ -46,12 +46,15 @@ namespace FindAndReplace.App
 	}
 }
 
-// TODO: Add support for renaming files/folders
+// TODO: Change Create Backups checkbox to groupbox with radio buttons: Disabled, In Same Folder, In Subfolder
 // TODO: Test Mode?
+// TODO: Allow search in Office Files?
 // TODO: Undo Operation
 // TODO: Count replacements
 // TODO: Tie UI to APP
-// TODO: Add Recording function (save searches to CSV)
-// TODO: Add method to process all CSV lists into a List of CLSFindReplaceRecord
 // TODO: Add more testing
 // TODO: Finish Documentation
+// TODO: Add support for renaming files/folders
+// 			Going to require re-evaluating filepaths in the UI
+// 			Don't open files if only renaming
+// 				List.TrueForAll?

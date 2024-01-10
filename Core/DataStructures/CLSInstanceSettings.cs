@@ -4,6 +4,8 @@
 
 namespace FindAndReplace.Core.DataStructures
 {
+	using System;
+
 	internal class CLSInstanceSettings
 	{
 		public bool vbnDebug;
@@ -22,7 +24,30 @@ namespace FindAndReplace.Core.DataStructures
 		public void subParseCommandLineArguments(string[] p_aryArguments)
 		{
 			// TODO: Implement this method.
-			throw new System.NotImplementedException();
+			foreach (string strArgument in p_aryArguments)
+			{
+				switch (strArgument)
+				{
+					case "-d":
+					case "--debug":
+						this.vbnDebug = true;
+						break;
+					case "-g":
+					case "--gui":
+						this.vbnRunAsGUIApp = true;
+						break;
+					case "-c":
+					case "--cli":
+						this.vbnRunAsCLIApp = true;
+						break;
+					case "-p":
+					case "--port":
+						this.vbnRunAsPortListener = true;
+						break;
+					default:
+						throw new ArgumentException($"Unknown argument: {strArgument}");
+				}
+			}
 		}
 	}
 }

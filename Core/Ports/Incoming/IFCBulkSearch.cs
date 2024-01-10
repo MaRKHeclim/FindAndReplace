@@ -10,7 +10,7 @@ namespace FindAndReplace.Core.Ports.Incoming
 	/// <summary>
 	/// Interface for iterating over files and calling string replace operations.
 	/// </summary>
-	internal interface IFCBulkSearch
+	public interface IFCBulkSearch
 	{
 		public void subSearchFilesAndFolders(IEnumerable<string> p_enbFilePaths, IEnumerable<CLSFindReplaceRecord> p_enbFindReplaceRecords);
 

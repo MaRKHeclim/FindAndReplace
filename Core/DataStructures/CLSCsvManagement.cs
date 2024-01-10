@@ -41,6 +41,7 @@ namespace FindAndReplace.Core.DataStructures
 			return this.stcFindReplaceRecords.ToArray().Reverse();
 		}
 
+		/// <inheritdoc/>
 		public void subAddFindReplaceRecord(CLSFindReplaceRecord p_objFindReplaceRecord)
 		{
             this.stcFindReplaceRecords.Push(p_objFindReplaceRecord);
@@ -48,6 +49,7 @@ namespace FindAndReplace.Core.DataStructures
 			// TODO: Determine if the output file needs to be on record add/remove or on save button click.
         }
 
+		/// <inheritdoc/>
 		public void subRemoveFindReplaceRecord()
 		{
             this.stcFindReplaceRecords.Pop();
@@ -55,6 +57,7 @@ namespace FindAndReplace.Core.DataStructures
             // TODO: Determine if the output file needs to be on record add/remove or on save button click.
         }
 
+		/// <inheritdoc/>
 		public void subSaveFindReplaceRecordList(string p_vstAbsoluteFilePath)
 		{
 			IEnumerable<CLSFindReplaceRecord> enbFindReplaceRecords = this.stcFindReplaceRecords.ToArray().Reverse();

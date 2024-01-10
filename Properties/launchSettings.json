@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FindAndReplace_GUI": {
+      "commandName": "Project",
+      "commandLineArgs": "--gui"
+    }
+  }
+}
