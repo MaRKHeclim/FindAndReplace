@@ -30,6 +30,7 @@ namespace FindAndReplace
 			// Add event handlers
 			this.rbnSearchWith_CSVs.CheckedChanged += this.subRbnSearchWithCSVs_OnCheckedChanged;
 			this.rbnSearchWith_ManualEntry.CheckedChanged += this.subRbnSearchWith_ManualEntry_OnCheckedChanged;
+			this.btnManualEntry_Switch.Click += this.subBtnManualEntry_Switch_OnClick;
 			this.btnCSV_Browse.Click += this.subBtnCsv_Browse_OnClick;
 			this.btnCSV_Clear.Click += this.subBtnCsv_Clear_OnClick;
 			this.btnCSV_New.Click += this.subBtnCsv_New_OnClick;
@@ -50,6 +51,8 @@ namespace FindAndReplace
 			this.rbnSearchWith_CSVs.Checked = true;
 			this.rbnSearchIn_Files.Checked = true;
 			this.rbnFindMode_Extended.Checked = true;
+			this.rbnBackup_InSubfolder.Checked = true;
+			this.rbnSaveSearches_Disable.Checked = true;
 
 			// Disable controls that are not yet implemented
 			this.cbxFindWithin_DirectoryName.Enabled = false;
@@ -67,6 +70,13 @@ namespace FindAndReplace
 			this.subSearchWithRbns_OnSelectedValueChanged();
 		}
 
+		private void subBtnManualEntry_Switch_OnClick(object objSender, EventArgs objEventArgs)
+		{
+			string vstOrigFindText = this.tbxFind.Text;
+			this.tbxFind.Text = this.tbxReplace.Text;
+			this.tbxReplace.Text = vstOrigFindText;
+		}
+
 		private void subBtnCsv_Browse_OnClick(object objSender, EventArgs objEventArgs)
 		{
 			this.subBrowseFiles(this.lbxCSVs, true);
@@ -81,6 +91,10 @@ namespace FindAndReplace
 		private void subBtnCsv_New_OnClick(object objSender, EventArgs objEventArgs)
 		{
 			// TODO: Implement this method.
+			// Create header and example rows
+			// Save to file
+			// Add to listbox
+			// Open file
 			throw new NotImplementedException();
 		}
 

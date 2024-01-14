@@ -59,14 +59,17 @@
 			btnSearchIn_Clear = new Button();
 			cbxMatchWholeWordsOnly = new CheckBox();
 			cbxCaseSensitiveMatching = new CheckBox();
-			cbxCreateBackups = new CheckBox();
-			gbxSaveSearches = new GroupBox();
-			rbnSaveSearches_Append = new RadioButton();
-			rbnSaveSearches_Disable = new RadioButton();
-			rbnSaveSearches_New = new RadioButton();
-			rbnSaveSearches_Overwirte = new RadioButton();
+			gbxBackup = new GroupBox();
+			rbnBackup_Disable = new RadioButton();
+			rbnBackup_InSubfolder = new RadioButton();
+			rbnBackup_InSameFolder = new RadioButton();
 			btnReplace = new Button();
 			btnUndo = new Button();
+			gbxSaveSearches = new GroupBox();
+			rbnSaveSearches_Overwirte = new RadioButton();
+			rbnSaveSearches_New = new RadioButton();
+			rbnSaveSearches_Append = new RadioButton();
+			rbnSaveSearches_Disable = new RadioButton();
 			sbrStatusBar = new StatusStrip();
 			lblStatus = new ToolStripStatusLabel();
 			pbrProgressBar = new ToolStripProgressBar();
@@ -75,8 +78,9 @@
 			gbxSearchWith.SuspendLayout();
 			gbxFindMode.SuspendLayout();
 			gbxSearchIn.SuspendLayout();
-			sbrStatusBar.SuspendLayout();
 			gbxSaveSearches.SuspendLayout();
+			sbrStatusBar.SuspendLayout();
+			gbxBackup.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gbxFindWithin
@@ -222,7 +226,7 @@
 			gbxFindMode.Controls.Add(rbnFindMode_Normal);
 			gbxFindMode.Location = new Point(12, 116);
 			gbxFindMode.Name = "gbxFindMode";
-			gbxFindMode.Size = new Size(183, 95);
+			gbxFindMode.Size = new Size(183, 112);
 			gbxFindMode.TabIndex = 13;
 			gbxFindMode.TabStop = false;
 			gbxFindMode.Text = "Find Mode";
@@ -230,7 +234,7 @@
 			// rbnFindMode_RegEx
 			// 
 			rbnFindMode_RegEx.AutoSize = true;
-			rbnFindMode_RegEx.Location = new Point(6, 72);
+			rbnFindMode_RegEx.Location = new Point(6, 87);
 			rbnFindMode_RegEx.Name = "rbnFindMode_RegEx";
 			rbnFindMode_RegEx.Size = new Size(124, 19);
 			rbnFindMode_RegEx.TabIndex = 12;
@@ -243,10 +247,10 @@
 			rbnFindMode_Extended.AutoSize = true;
 			rbnFindMode_Extended.Location = new Point(6, 47);
 			rbnFindMode_Extended.Name = "rbnFindMode_Extended";
-			rbnFindMode_Extended.Size = new Size(257, 19);
+			rbnFindMode_Extended.Size = new Size(153, 34);
 			rbnFindMode_Extended.TabIndex = 11;
 			rbnFindMode_Extended.TabStop = true;
-			rbnFindMode_Extended.Text = "Extended (\\n, \\r, \\t, \\', \\\", \\\\, \\0, \\a, \\b, \\f, \\v)";
+			rbnFindMode_Extended.Text = "Extended (\\n, \\r, \\t,\r\n\\', \\\", \\\\, \\0, \\a, \\b, \\f, \\v)";
 			rbnFindMode_Extended.UseVisualStyleBackColor = true;
 			// 
 			// rbnFindMode_Normal
@@ -343,20 +347,10 @@
 			btnSearchIn_Clear.Text = "Clear";
 			btnSearchIn_Clear.UseVisualStyleBackColor = true;
 			// 
-			// cbxCreateBackups
-			// 
-			cbxCreateBackups.AutoSize = true;
-			cbxCreateBackups.Location = new Point(18, 267);
-			cbxCreateBackups.Name = "cbxCreateBackups";
-			cbxCreateBackups.Size = new Size(107, 19);
-			cbxCreateBackups.TabIndex = 3;
-			cbxCreateBackups.Text = "Create Backups";
-			cbxCreateBackups.UseVisualStyleBackColor = true;
-			// 
 			// cbxMatchWholeWordsOnly
 			// 
 			cbxMatchWholeWordsOnly.AutoSize = true;
-			cbxMatchWholeWordsOnly.Location = new Point(18, 217);
+			cbxMatchWholeWordsOnly.Location = new Point(18, 234);
 			cbxMatchWholeWordsOnly.Name = "cbxMatchWholeWordsOnly";
 			cbxMatchWholeWordsOnly.Size = new Size(162, 19);
 			cbxMatchWholeWordsOnly.TabIndex = 14;
@@ -366,12 +360,69 @@
 			// cbxCaseSensitiveMatching
 			// 
 			cbxCaseSensitiveMatching.AutoSize = true;
-			cbxCaseSensitiveMatching.Location = new Point(18, 242);
+			cbxCaseSensitiveMatching.Location = new Point(18, 259);
 			cbxCaseSensitiveMatching.Name = "cbxCaseSensitiveMatching";
 			cbxCaseSensitiveMatching.Size = new Size(154, 19);
 			cbxCaseSensitiveMatching.TabIndex = 15;
 			cbxCaseSensitiveMatching.Text = "Case Sensitive Matching";
 			cbxCaseSensitiveMatching.UseVisualStyleBackColor = true;
+			// 
+			// gbxSaveSearches
+			// 
+			gbxSaveSearches.Controls.Add(rbnSaveSearches_Overwirte);
+			gbxSaveSearches.Controls.Add(rbnSaveSearches_New);
+			gbxSaveSearches.Controls.Add(rbnSaveSearches_Append);
+			gbxSaveSearches.Controls.Add(rbnSaveSearches_Disable);
+			gbxSaveSearches.Location = new Point(442, 267);
+			gbxSaveSearches.Name = "gbxSaveSearches";
+			gbxSaveSearches.Size = new Size(167, 120);
+			gbxSaveSearches.TabIndex = 26;
+			gbxSaveSearches.TabStop = false;
+			gbxSaveSearches.Text = "Create CSV from searches";
+			// 
+			// rbnSaveSearches_Overwirte
+			// 
+			rbnSaveSearches_Overwirte.AutoSize = true;
+			rbnSaveSearches_Overwirte.Location = new Point(6, 97);
+			rbnSaveSearches_Overwirte.Name = "rbnSaveSearches_Overwirte";
+			rbnSaveSearches_Overwirte.Size = new Size(76, 19);
+			rbnSaveSearches_Overwirte.TabIndex = 3;
+			rbnSaveSearches_Overwirte.TabStop = true;
+			rbnSaveSearches_Overwirte.Text = "Overwrite";
+			rbnSaveSearches_Overwirte.UseVisualStyleBackColor = true;
+			// 
+			// rbnSaveSearches_New
+			// 
+			rbnSaveSearches_New.AutoSize = true;
+			rbnSaveSearches_New.Location = new Point(6, 72);
+			rbnSaveSearches_New.Name = "rbnSaveSearches_New";
+			rbnSaveSearches_New.Size = new Size(49, 19);
+			rbnSaveSearches_New.TabIndex = 2;
+			rbnSaveSearches_New.TabStop = true;
+			rbnSaveSearches_New.Text = "New";
+			rbnSaveSearches_New.UseVisualStyleBackColor = true;
+			// 
+			// rbnSaveSearches_Append
+			// 
+			rbnSaveSearches_Append.AutoSize = true;
+			rbnSaveSearches_Append.Location = new Point(6, 22);
+			rbnSaveSearches_Append.Name = "rbnSaveSearches_Append";
+			rbnSaveSearches_Append.Size = new Size(67, 19);
+			rbnSaveSearches_Append.TabIndex = 1;
+			rbnSaveSearches_Append.TabStop = true;
+			rbnSaveSearches_Append.Text = "Append";
+			rbnSaveSearches_Append.UseVisualStyleBackColor = true;
+			// 
+			// rbnSaveSearches_Disable
+			// 
+			rbnSaveSearches_Disable.AutoSize = true;
+			rbnSaveSearches_Disable.Location = new Point(6, 47);
+			rbnSaveSearches_Disable.Name = "rbnSaveSearches_Disable";
+			rbnSaveSearches_Disable.Size = new Size(63, 19);
+			rbnSaveSearches_Disable.TabIndex = 0;
+			rbnSaveSearches_Disable.TabStop = true;
+			rbnSaveSearches_Disable.Text = "Disable";
+			rbnSaveSearches_Disable.UseVisualStyleBackColor = true;
 			// 
 			// btnReplace
 			// 
@@ -394,10 +445,10 @@
 			// sbrStatusBar
 			// 
 			sbrStatusBar.Items.AddRange(new ToolStripItem[] { lblStatus, pbrProgressBar, lblProgress });
-			sbrStatusBar.Location = new Point(0, 474);
+			sbrStatusBar.Location = new Point(0, 393);
 			sbrStatusBar.Name = "sbrStatusBar";
 			sbrStatusBar.RightToLeft = RightToLeft.No;
-			sbrStatusBar.Size = new Size(619, 22);
+			sbrStatusBar.Size = new Size(616, 22);
 			sbrStatusBar.TabIndex = 16;
 			sbrStatusBar.Text = "sbrStatusBar";
 			// 
@@ -420,68 +471,57 @@
 			lblProgress.Size = new Size(118, 17);
 			lblProgress.Text = "toolStripStatusLabel2";
 			// 
-			// gbxSaveSearches
+			// gbxBackup
 			// 
-			gbxSaveSearches.Controls.Add(rbnSaveSearches_Overwirte);
-			gbxSaveSearches.Controls.Add(rbnSaveSearches_New);
-			gbxSaveSearches.Controls.Add(rbnSaveSearches_Append);
-			gbxSaveSearches.Controls.Add(rbnSaveSearches_Disable);
-			gbxSaveSearches.Location = new Point(12, 288);
-			gbxSaveSearches.Name = "gbxSaveSearches";
-			gbxSaveSearches.Size = new Size(183, 121);
-			gbxSaveSearches.TabIndex = 26;
-			gbxSaveSearches.TabStop = false;
-			gbxSaveSearches.Text = "Create CSV from searches";
+			gbxBackup.Controls.Add(rbnBackup_Disable);
+			gbxBackup.Controls.Add(rbnBackup_InSubfolder);
+			gbxBackup.Controls.Add(rbnBackup_InSameFolder);
+			gbxBackup.Location = new Point(12, 284);
+			gbxBackup.Name = "gbxBackup";
+			gbxBackup.Size = new Size(183, 103);
+			gbxBackup.TabIndex = 27;
+			gbxBackup.TabStop = false;
+			gbxBackup.Text = "Create .bak files?";
 			// 
-			// rbnSaveSearches_Disable
+			// rbnBackup_Disable
 			// 
-			rbnSaveSearches_Disable.AutoSize = true;
-			rbnSaveSearches_Disable.Location = new Point(6, 47);
-			rbnSaveSearches_Disable.Name = "rbnSaveSearches_Disable";
-			rbnSaveSearches_Disable.Size = new Size(63, 19);
-			rbnSaveSearches_Disable.TabIndex = 0;
-			rbnSaveSearches_Disable.TabStop = true;
-			rbnSaveSearches_Disable.Text = "Disable";
-			rbnSaveSearches_Disable.UseVisualStyleBackColor = true;
+			rbnBackup_Disable.AutoSize = true;
+			rbnBackup_Disable.Location = new Point(6, 22);
+			rbnBackup_Disable.Name = "rbnBackup_Disable";
+			rbnBackup_Disable.Size = new Size(63, 19);
+			rbnBackup_Disable.TabIndex = 0;
+			rbnBackup_Disable.TabStop = true;
+			rbnBackup_Disable.Text = "Disable";
+			rbnBackup_Disable.UseVisualStyleBackColor = true;
 			// 
-			// rbnSaveSearches_Append
+			// rbnBackup_InSubfolder
 			// 
-			rbnSaveSearches_Append.AutoSize = true;
-			rbnSaveSearches_Append.Location = new Point(6, 22);
-			rbnSaveSearches_Append.Name = "rbnSaveSearches_Append";
-			rbnSaveSearches_Append.Size = new Size(67, 19);
-			rbnSaveSearches_Append.TabIndex = 1;
-			rbnSaveSearches_Append.TabStop = true;
-			rbnSaveSearches_Append.Text = "Append";
-			rbnSaveSearches_Append.UseVisualStyleBackColor = true;
+			this.rbnBackup_InSubfolder.AutoSize = true;
+			this.rbnBackup_InSubfolder.Location = new Point(6, 72);
+			this.rbnBackup_InSubfolder.Name = "rbnBackup_InSubfolder";
+			this.rbnBackup_InSubfolder.Size = new Size(89, 19);
+			this.rbnBackup_InSubfolder.TabIndex = 3;
+			this.rbnBackup_InSubfolder.TabStop = true;
+			this.rbnBackup_InSubfolder.Text = "In Subfolder";
+			this.rbnBackup_InSubfolder.UseVisualStyleBackColor = true;
 			// 
-			// rbnSaveSearches_New
+			// rbnBackup_InSameFolder
 			// 
-			rbnSaveSearches_New.AutoSize = true;
-			rbnSaveSearches_New.Location = new Point(6, 72);
-			rbnSaveSearches_New.Name = "rbnSaveSearches_New";
-			rbnSaveSearches_New.Size = new Size(49, 19);
-			rbnSaveSearches_New.TabIndex = 2;
-			rbnSaveSearches_New.TabStop = true;
-			rbnSaveSearches_New.Text = "New";
-			rbnSaveSearches_New.UseVisualStyleBackColor = true;
-			// 
-			// rbnSaveSearches_Overwirte
-			// 
-			rbnSaveSearches_Overwirte.AutoSize = true;
-			rbnSaveSearches_Overwirte.Location = new Point(6, 97);
-			rbnSaveSearches_Overwirte.Name = "rbnSaveSearches_Overwirte";
-			rbnSaveSearches_Overwirte.Size = new Size(76, 19);
-			rbnSaveSearches_Overwirte.TabIndex = 3;
-			rbnSaveSearches_Overwirte.TabStop = true;
-			rbnSaveSearches_Overwirte.Text = "Overwrite";
-			rbnSaveSearches_Overwirte.UseVisualStyleBackColor = true;
+			this.rbnBackup_InSameFolder.AutoSize = true;
+			this.rbnBackup_InSameFolder.Location = new Point(6, 47);
+			this.rbnBackup_InSameFolder.Name = "rbnBackup_InSameFolder";
+			this.rbnBackup_InSameFolder.Size = new Size(103, 19);
+			this.rbnBackup_InSameFolder.TabIndex = 2;
+			this.rbnBackup_InSameFolder.TabStop = true;
+			this.rbnBackup_InSameFolder.Text = "In Same Folder";
+			this.rbnBackup_InSameFolder.UseVisualStyleBackColor = true;
 			// 
 			// FRMGui
 			// 
 			this.AutoScaleDimensions = new SizeF(7F, 15F);
 			this.AutoScaleMode = AutoScaleMode.Font;
-			this.ClientSize = new Size(619, 496);
+			this.ClientSize = new Size(616, 415);
+			this.Controls.Add(gbxBackup);
 			this.Controls.Add(gbxSaveSearches);
 			this.Controls.Add(btnUndo);
 			this.Controls.Add(btnReplace);
@@ -494,7 +534,6 @@
 			this.Controls.Add(cbxCaseSensitiveMatching);
 			this.Controls.Add(cbxMatchWholeWordsOnly);
 			this.Controls.Add(gbxFindMode);
-			this.Controls.Add(cbxCreateBackups);
 			this.Controls.Add(gbxFindWithin);
 			this.Controls.Add(gbxSearchIn);
 			this.Controls.Add(tbxSearchIn);
@@ -515,10 +554,12 @@
 			gbxFindMode.PerformLayout();
 			gbxSearchIn.ResumeLayout(false);
 			gbxSearchIn.PerformLayout();
-			sbrStatusBar.ResumeLayout(false);
-			sbrStatusBar.PerformLayout();
 			gbxSaveSearches.ResumeLayout(false);
 			gbxSaveSearches.PerformLayout();
+			sbrStatusBar.ResumeLayout(false);
+			sbrStatusBar.PerformLayout();
+			gbxBackup.ResumeLayout(false);
+			gbxBackup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
@@ -565,5 +606,9 @@
 		private RadioButton rbnSaveSearches_Overwirte;
 		private RadioButton rbnSaveSearches_New;
 		private RadioButton rbnSaveSearches_Append;
+		private GroupBox gbxBackup;
+		private RadioButton rbnBackup_Disable;
+		private RadioButton rbnBackup_InSameFolder;
+		private RadioButton rbnBackup_InSubfolder;
 	}
 }
