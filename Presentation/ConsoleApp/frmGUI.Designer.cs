@@ -1,4 +1,4 @@
-﻿namespace FindAndReplace
+﻿namespace FindAndReplace.Presentation.ConsoleApp
 {
 	using System.Drawing;
 	using System.Windows.Forms;
@@ -66,7 +66,7 @@
 			btnReplace = new Button();
 			btnUndo = new Button();
 			gbxSaveSearches = new GroupBox();
-			rbnSaveSearches_Overwirte = new RadioButton();
+			rbnSaveSearches_Overwrite = new RadioButton();
 			rbnSaveSearches_New = new RadioButton();
 			rbnSaveSearches_Append = new RadioButton();
 			rbnSaveSearches_Disable = new RadioButton();
@@ -369,7 +369,7 @@
 			// 
 			// gbxSaveSearches
 			// 
-			gbxSaveSearches.Controls.Add(rbnSaveSearches_Overwirte);
+			gbxSaveSearches.Controls.Add(rbnSaveSearches_Overwrite);
 			gbxSaveSearches.Controls.Add(rbnSaveSearches_New);
 			gbxSaveSearches.Controls.Add(rbnSaveSearches_Append);
 			gbxSaveSearches.Controls.Add(rbnSaveSearches_Disable);
@@ -380,16 +380,16 @@
 			gbxSaveSearches.TabStop = false;
 			gbxSaveSearches.Text = "Create CSV from searches";
 			// 
-			// rbnSaveSearches_Overwirte
+			// rbnSaveSearches_Overwrite
 			// 
-			rbnSaveSearches_Overwirte.AutoSize = true;
-			rbnSaveSearches_Overwirte.Location = new Point(6, 97);
-			rbnSaveSearches_Overwirte.Name = "rbnSaveSearches_Overwirte";
-			rbnSaveSearches_Overwirte.Size = new Size(76, 19);
-			rbnSaveSearches_Overwirte.TabIndex = 3;
-			rbnSaveSearches_Overwirte.TabStop = true;
-			rbnSaveSearches_Overwirte.Text = "Overwrite";
-			rbnSaveSearches_Overwirte.UseVisualStyleBackColor = true;
+			rbnSaveSearches_Overwrite.AutoSize = true;
+			rbnSaveSearches_Overwrite.Location = new Point(6, 97);
+			rbnSaveSearches_Overwrite.Name = "rbnSaveSearches_Overwrite";
+			rbnSaveSearches_Overwrite.Size = new Size(76, 19);
+			rbnSaveSearches_Overwrite.TabIndex = 3;
+			rbnSaveSearches_Overwrite.TabStop = true;
+			rbnSaveSearches_Overwrite.Text = "Overwrite";
+			rbnSaveSearches_Overwrite.UseVisualStyleBackColor = true;
 			// 
 			// rbnSaveSearches_New
 			// 
@@ -545,7 +545,6 @@
 			this.Controls.Add(lbxSearchIn);
 			this.Name = "FRMGui";
 			this.Text = "Find and Replace";
-			this.Load += this.subFrm_OnLoad;
 			gbxFindWithin.ResumeLayout(false);
 			gbxFindWithin.PerformLayout();
 			gbxSearchWith.ResumeLayout(false);
@@ -603,7 +602,7 @@
 		private Button btnManualEntry_Switch;
 		private GroupBox gbxSaveSearches;
 		private RadioButton rbnSaveSearches_Disable;
-		private RadioButton rbnSaveSearches_Overwirte;
+		private RadioButton rbnSaveSearches_Overwrite;
 		private RadioButton rbnSaveSearches_New;
 		private RadioButton rbnSaveSearches_Append;
 		private GroupBox gbxBackup;

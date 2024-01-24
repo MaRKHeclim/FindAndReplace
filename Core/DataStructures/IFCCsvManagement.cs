@@ -5,7 +5,7 @@
 namespace FindAndReplace.Core.DataStructures
 {
 
-	internal interface IFCCsvManagement
+	public interface IFCCsvManagement
 	{
 		public System.Collections.Generic.IEnumerable<CLSFindReplaceRecord> fncMakeFindReplaceRecordList(System.Collections.Generic.IEnumerable<string> p_enbCSVPaths);
 

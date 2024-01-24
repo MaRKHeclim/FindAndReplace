@@ -46,7 +46,10 @@ namespace FindAndReplace.App
 	}
 }
 
-// TODO: Change Create Backups checkbox to groupbox with radio buttons: Disabled, In Same Folder, In Subfolder
+// TODO: Make Bulk Search Allow Combinations of Directories and Files
+// TODO: Add Dot Matches Newline Checkbox
+// TODO: Add Treat Lines as Separate Strings Checkbox
+// TODO: Verify that browse opens to my computer
 // TODO: Test Mode?
 // TODO: Allow search in Office Files?
 // TODO: Undo Operation

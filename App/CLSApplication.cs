@@ -10,6 +10,7 @@ namespace FindAndReplace.App
 	using FindAndReplace.Core.Ports.Incoming;
 	using FindAndReplace.Core.Ports.Outgoing;
 	using FindAndReplace.Core.Services;
+	using FindAndReplace.Presentation.ConsoleApp;
 	using FindAndReplace.SecondaryAdapters;
 
 	using Microsoft.Extensions.DependencyInjection;
@@ -67,6 +68,8 @@ namespace FindAndReplace.App
 
 		private void subOnFormClosed(object sender, FormClosedEventArgs objEventArgs)
 		{
+			// TODO: Remove the following line.
+			System.Console.WriteLine("External Form Closed Event Handler Called");
 			this.subStopApplication();
 		}
 
@@ -85,7 +88,8 @@ namespace FindAndReplace.App
 			{
 				IFCBulkSearch objBulkSearch = this.objHost.Services.GetRequiredService<IFCBulkSearch>();
 				IFCStringReplaceWithOptions objStringReplaceWithOptions = this.objHost.Services.GetRequiredService<IFCStringReplaceWithOptions>();
-				this.frmGUI = new FRMGui(objBulkSearch, objStringReplaceWithOptions);
+				IFCCsvManagement objCsvManagement = this.objHost.Services.GetRequiredService<IFCCsvManagement>();
+				this.frmGUI = new FRMGui(objBulkSearch, objStringReplaceWithOptions, objCsvManagement);
 				this.frmGUI.FormClosed += this.subOnFormClosed;
 				Application.Run(this.frmGUI); // Calls frmGui.Show() internally.
 			}
